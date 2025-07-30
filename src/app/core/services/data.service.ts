@@ -8,25 +8,22 @@ import {
   Contract,
   ApiResponse,
   ExpandedRowData,
+  PaginatedResponse,
 } from '../../shared/models/client.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataService {
-  private mockClients: ApiResponse<Client> = {
-    response: {
-      result: [
-        {
-          imie: 'Jan',
-          nazwisko: 'Kowalski',
-          adres: 'ul. Słoneczna 12, Warszawa',
-          telefon: '123-456-789',
-          ilosc_obiektow: 3,
-        },
-      ],
+  private mockClients: Client[] = [
+    {
+      imie: 'Jan',
+      nazwisko: 'Kowalski',
+      adres: 'ul. Słoneczna 12, Warszawa',
+      telefon: '123-456-789',
+      ilosc_obiektow: 3,
     },
-  };
+  ];
 
   private mockOffers: ApiResponse<Offer> = {
     response: {
@@ -109,11 +106,23 @@ export class DataService {
     },
   };
 
-  getClients(): Observable<Client[]> {
-    return of(this.mockClients).pipe(
-      delay(300),
-      map((response) => response.response.result)
-    );
+  getClients(
+    page: number = 0,
+    pageSize: number = 5
+  ): Observable<PaginatedResponse<Client>> {
+    const startIndex = page * pageSize;
+    const endIndex = startIndex + pageSize;
+    const paginatedClients = this.mockClients.slice(startIndex, endIndex);
+
+    const response: PaginatedResponse<Client> = {
+      data: paginatedClients,
+      totalCount: this.mockClients.length,
+      page: page,
+      pageSize: pageSize,
+      totalPages: Math.ceil(this.mockClients.length / pageSize),
+    };
+
+    return of(response).pipe(delay(300));
   }
 
   getExpandedRowData(clientName: string): Observable<ExpandedRowData> {

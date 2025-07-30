@@ -6,6 +6,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 const MaterialComponents = [
   MatTableModule,
@@ -15,6 +16,7 @@ const MaterialComponents = [
   MatCardModule,
   MatProgressSpinnerModule,
   MatTooltipModule,
+  MatPaginatorModule,
 ];
 
 @NgModule({

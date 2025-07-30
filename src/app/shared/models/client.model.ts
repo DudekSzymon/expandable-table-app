@@ -1,4 +1,3 @@
-// Główne modele danych
 export interface Client {
   imie: string;
   nazwisko: string;
@@ -30,21 +29,26 @@ export interface Contract {
   nazwa_pliku: string;
 }
 
-// Response wrapper dla API
 export interface ApiResponse<T> {
   response: {
     result: T[];
   };
 }
 
-// Dane dla rozszerzonych wierszy
+export interface PaginatedResponse<T> {
+  data: T[];
+  totalCount: number;
+  page: number;
+  pageSize: number;
+  totalPages: number;
+}
+
 export interface ExpandedRowData {
   offers: Offer[];
   invoices: Invoice[];
   contracts: Contract[];
 }
 
-// Konfiguracja kolumn (uniwersalne podejście)
 export interface ColumnConfig {
   key: string;
   label: string;
@@ -52,7 +56,6 @@ export interface ColumnConfig {
   format?: string;
 }
 
-// Konfiguracja zakładek
 export interface TabConfig {
   label: string;
   key: keyof ExpandedRowData;

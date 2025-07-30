@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   animate,
@@ -7,12 +7,14 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MaterialModule } from '../../shared/material.module';
 import { DataService } from '../../core/services/data.service';
 import {
   Client,
   ExpandedRowData,
   ColumnConfig,
+  PaginatedResponse,
 } from '../../shared/models/client.model';
 import { CLIENT_COLUMNS } from '../../shared/constants/table-config';
 import { ExpandableRowComponent } from '../../shared/components/expandable-row/expandable-row.component';
@@ -35,15 +37,22 @@ import { ExpandableRowComponent } from '../../shared/components/expandable-row/e
   ],
 })
 export class ClientManagementComponent implements OnInit {
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
   clients: Client[] = [];
   displayedColumns: string[] = [];
   columnsConfig: ColumnConfig[] = CLIENT_COLUMNS;
   expandedElement: Client | null = null;
   expandedData: ExpandedRowData | null = null;
   isLoadingExpanded = false;
+  isLoadingClients = false;
+
+  totalCount = 0;
+  pageSize = 5;
+  currentPage = 0;
+  pageSizeOptions: number[] = [5, 10, 25, 50];
 
   constructor(private dataService: DataService) {
-    // Przygotowanie kolumn z akcjami
     this.displayedColumns = [
       'expand',
       ...this.columnsConfig.map((col) => col.key),
@@ -56,23 +65,34 @@ export class ClientManagementComponent implements OnInit {
   }
 
   loadClients(): void {
-    this.dataService.getClients().subscribe({
-      next: (clients) => {
-        this.clients = clients;
+    this.isLoadingClients = true;
+    this.dataService.getClients(this.currentPage, this.pageSize).subscribe({
+      next: (response: PaginatedResponse<Client>) => {
+        this.clients = response.data;
+        this.totalCount = response.totalCount;
+        this.isLoadingClients = false;
+
+        this.expandedElement = null;
+        this.expandedData = null;
       },
       error: (error) => {
         console.error('Błąd podczas ładowania klientów:', error);
+        this.isLoadingClients = false;
       },
     });
   }
 
+  onPageChange(event: PageEvent): void {
+    this.currentPage = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.loadClients();
+  }
+
   toggleRow(element: Client): void {
     if (this.expandedElement === element) {
-      // Zamykanie rozszerzonego wiersza
       this.expandedElement = null;
       this.expandedData = null;
     } else {
-      // Otwieranie nowego wiersza
       this.expandedElement = element;
       this.loadExpandedData(element);
     }
@@ -100,5 +120,20 @@ export class ClientManagementComponent implements OnInit {
 
   getColumnValue(element: any, column: ColumnConfig): any {
     return element[column.key];
+  }
+
+  viewClient(client: Client, event: Event): void {
+    event.stopPropagation();
+    console.log('Podgląd klienta:', client);
+  }
+
+  editClient(client: Client, event: Event): void {
+    event.stopPropagation();
+    console.log('Edytowanie klienta:', client);
+  }
+
+  deleteClient(client: Client, event: Event): void {
+    event.stopPropagation();
+    console.log('Usuwanie klienta:', client);
   }
 }

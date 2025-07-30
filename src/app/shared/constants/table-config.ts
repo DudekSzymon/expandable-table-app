@@ -1,6 +1,5 @@
 import { ColumnConfig, TabConfig } from '../models/client.model';
 
-// Konfiguracja kolumn głównej tabeli
 export const CLIENT_COLUMNS: ColumnConfig[] = [
   { key: 'imie', label: 'Imię', type: 'text' },
   { key: 'nazwisko', label: 'Nazwisko', type: 'text' },
