@@ -1,0 +1,114 @@
+.client-table-card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+
+  mat-card-header {
+    padding: 24px 24px 0;
+
+    mat-card-title h2 {
+      color: #1976d2;
+      font-weight: 500;
+    }
+  }
+}
+
+.table-container {
+  overflow-x: auto;
+  margin-top: 16px;
+
+  table {
+    min-width: 100%;
+    background: white;
+
+    th.mat-header-cell {
+      background-color: #f5f5f5;
+      font-weight: 600;
+      color: #424242;
+      border-bottom: 2px solid #e0e0e0;
+    }
+
+    td.mat-cell {
+      border-bottom: 1px solid #e0e0e0;
+      padding: 12px 8px;
+    }
+  }
+}
+
+.main-row {
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: #f8f9fa;
+  }
+
+  &.expanded-row {
+    background-color: #e3f2fd;
+    border-left: 4px solid #1976d2;
+  }
+}
+
+.detail-row {
+  border: none;
+
+  td {
+    border: none;
+    padding: 0;
+  }
+}
+
+.expanded-row-content {
+  overflow: hidden;
+  background-color: #fafafa;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  margin: 8px;
+
+  .text-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    p {
+      color: #666;
+      font-size: 14px;
+    }
+  }
+}
+
+// Responsywność dla mniejszych ekranów
+@media (max-width: 768px) {
+  .container-fluid {
+    padding: 16px 8px;
+  }
+
+  .table-container {
+    font-size: 14px;
+
+    td.mat-cell,
+    th.mat-header-cell {
+      padding: 8px 4px;
+    }
+  }
+}
+
+// Animacje dla ikon
+mat-icon {
+  transition: transform 0.2s ease;
+}
+
+button:hover mat-icon {
+  transform: scale(1.1);
+}
+
+// Style dla przycisków akcji
+.mat-icon-button {
+  &[color="warn"]:hover {
+    background-color: rgba(244, 67, 54, 0.1);
+  }
+
+  &:not([color]):hover {
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+}
