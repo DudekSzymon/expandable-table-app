@@ -50,6 +50,7 @@ export class ClientManagementComponent implements OnInit {
   totalCount = 0;
   pageSize = 5;
   currentPage = 0;
+  pageIndex = 0;
   pageSizeOptions: number[] = [5, 10, 25, 50];
 
   constructor(private dataService: DataService) {
@@ -84,6 +85,7 @@ export class ClientManagementComponent implements OnInit {
 
   onPageChange(event: PageEvent): void {
     this.currentPage = event.pageIndex;
+    this.pageIndex = event.pageIndex;
     this.pageSize = event.pageSize;
     this.loadClients();
   }

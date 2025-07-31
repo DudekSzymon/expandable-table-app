@@ -52,7 +52,7 @@ export interface ExpandedRowData {
 export interface ColumnConfig {
   key: string;
   label: string;
-  type?: 'text' | 'date' | 'datetime' | 'file';
+  type?: 'text' | 'date' | 'datetime' | 'file' | 'actions';
   format?: string;
 }
 

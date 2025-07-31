@@ -60,7 +60,7 @@
                   <th mat-header-cell *matHeaderCellDef>{{ column.label }}</th>
                   <td mat-cell *matCellDef="let element">
                     <ng-container [ngSwitch]="column.key">
-                      <span *ngSwitchCase="'imie'" class="client-badge type-1">
+                      <span *ngSwitchCase="'imie_nazwisko'">
                         {{ element.imie }} {{ element.nazwisko }}
                       </span>
                       <span *ngSwitchDefault>

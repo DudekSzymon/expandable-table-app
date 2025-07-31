@@ -1,8 +1,7 @@
 import { ColumnConfig, TabConfig } from '../models/client.model';
 
 export const CLIENT_COLUMNS: ColumnConfig[] = [
-  { key: 'imie', label: 'Imię', type: 'text' },
-  { key: 'nazwisko', label: 'Nazwisko', type: 'text' },
+  { key: 'imie_nazwisko', label: 'Imię i nazwisko', type: 'text' },
   { key: 'adres', label: 'Adres', type: 'text' },
   { key: 'telefon', label: 'Telefon', type: 'text' },
   { key: 'ilosc_obiektow', label: 'Ilość obiektów', type: 'text' },

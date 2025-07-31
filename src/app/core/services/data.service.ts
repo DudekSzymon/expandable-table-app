@@ -20,7 +20,7 @@ export class DataService {
       imie: 'Jan',
       nazwisko: 'Kowalski',
       adres: 'ul. Słoneczna 12, Warszawa',
-      telefon: '123-456-789',
+      telefon: '123456789',
       ilosc_obiektow: 3,
     },
   ];

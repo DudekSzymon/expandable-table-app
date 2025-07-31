@@ -11,5 +11,5 @@ import { ClientManagementComponent } from './pages/client-management/client-mana
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'ITMCode - Zadanie';
+  title = 'Klienci - Zadanie';
 }
