@@ -1,16 +1,18 @@
 @import "variables";
+@import "mixins";
 
 a {
   color: $black;
   text-decoration: underline;
   text-decoration-color: $black;
   text-underline-offset: 2px;
-}
+  @include hover-transition(color);
 
-a:hover,
-a:focus {
-  color: $main-orange;
-  text-decoration-color: $main-orange;
+  &:hover,
+  &:focus {
+    color: $main-orange;
+    text-decoration-color: $main-orange;
+  }
 }
 
 thead,
@@ -21,7 +23,7 @@ th {
   border-bottom-width: 2px !important;
   color: $black;
   border-bottom: 2px solid $light-background;
-  font-family: "Poppins", sans-serif;
+  @include poppins-font();
 }
 
 td {
@@ -29,7 +31,7 @@ td {
   border-bottom-width: 2px !important;
   border-bottom: 2px solid $light-background;
   color: $black;
-  font-family: "Poppins", sans-serif;
+  @include poppins-font();
 }
 
 .mat-mdc-table {
@@ -42,20 +44,19 @@ td {
   height: 16px;
   margin-right: 8px;
   cursor: pointer;
-  transition: filter 0.2s ease;
-}
+  @include hover-transition(filter);
 
-.action-icons:hover {
-  @include icon-orange-filter;
-}
+  &:hover {
+    @include icon-orange-filter;
+  }
 
-.action-icons:last-child {
-  margin-right: 0;
+  &:last-child {
+    margin-right: 0;
+  }
 }
 
 .action-icons-container-middle {
-  display: flex;
-  align-items: center;
+  @include flex-center();
   justify-content: flex-end !important;
 }
 
@@ -68,10 +69,9 @@ td {
   background-color: $white !important;
 }
 
-// Paginator styles
 .mat-mdc-paginator-container {
   color: $black;
-  font-family: "Poppins", sans-serif !important;
+  @include poppins-font();
 
   .mat-mdc-icon-button[disabled] .mat-mdc-paginator-icon {
     fill: $gray-border-darker;

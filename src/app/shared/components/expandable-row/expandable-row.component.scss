@@ -1,3 +1,6 @@
+@import "../../../../styles/variables";
+@import "../../../../styles/mixins";
+
 .expandable-content {
   background: white;
   border-radius: 4px;
@@ -14,6 +17,7 @@
         padding: 0 24px;
         font-weight: 500;
         color: #666;
+        @include poppins-font(500);
 
         &.mat-tab-label-active {
           color: #1976d2;
@@ -37,10 +41,7 @@
 }
 
 .no-data-message {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  @include flex-center(column);
   padding: 40px 20px;
   color: #666;
 
@@ -55,6 +56,7 @@
   p {
     margin: 0;
     font-size: 16px;
+    @include poppins-font();
   }
 }
 
@@ -74,15 +76,17 @@
     font-size: 13px;
     padding: 12px 8px;
     border-bottom: 2px solid #dee2e6;
+    @include poppins-font(600, 13px);
   }
 
   .detail-cell {
     padding: 12px 8px;
     font-size: 13px;
     border-bottom: 1px solid #e9ecef;
+    @include poppins-font(400, 13px);
 
     .date-value {
-      font-family: inherit;
+      @include poppins-font();
       padding: 2px 6px;
       border-radius: 3px;
       font-size: 13px;
@@ -91,7 +95,7 @@
 }
 
 .detail-data-row {
-  transition: background-color 0.2s ease;
+  @include hover-transition(background-color);
 
   &:hover {
     background-color: #f8f9fa;
@@ -103,10 +107,11 @@
 }
 
 .file-download-btn {
-  font-size: 13px;
+  @include poppins-font(400, 13px);
   padding: 4px 8px;
   min-width: auto;
   line-height: 1.2;
+  @include hover-transition(background-color);
 
   mat-icon {
     font-size: 16px;
@@ -120,28 +125,27 @@
   }
 }
 
-@media (max-width: 768px) {
+@include mobile-styles {
   .custom-tabs {
     ::ng-deep {
       .mat-tab-label {
         min-width: 80px;
         padding: 0 12px;
-        font-size: 13px;
+        @include poppins-font(500, 13px);
       }
     }
   }
 
   .detail-table {
-    font-size: 12px;
-
     .detail-header,
     .detail-cell {
       padding: 8px 6px;
+      @include poppins-font(400, 12px);
     }
   }
 
   .file-download-btn {
-    font-size: 12px;
+    @include poppins-font(400, 12px);
     padding: 2px 6px;
 
     mat-icon {

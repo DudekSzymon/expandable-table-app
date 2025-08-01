@@ -1,13 +1,10 @@
 @import "../../../styles/variables";
+@import "../../../styles/mixins";
 @import "../../../styles/dictionaries";
 @import "../../../styles/dictionaries-catalog";
 
 .client-table-card {
-  box-shadow: 6px 0px 10px rgba(0, 0, 0, 0.05);
-  border-radius: 10px;
-  background-color: $white;
-  color: $black;
-  font-family: "Poppins", sans-serif;
+  @include card-base;
 
   mat-card-header {
     display: none !important;
@@ -20,19 +17,7 @@
 }
 
 .loading-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 60px 20px;
-  min-height: 200px;
-
-  p {
-    color: $gray-border-darker;
-    font-size: 14px;
-    margin-top: 16px;
-    font-family: "Poppins", sans-serif;
-  }
+  @include loading-container;
 }
 
 .table-container {
@@ -48,36 +33,56 @@
     background: $white;
     border-collapse: separate;
     border-spacing: 0 4px;
-    font-family: "Poppins", sans-serif;
+    @include poppins-font();
 
     th.mat-header-cell {
-      background-color: $white;
-      font-weight: 600;
-      color: $black;
-      border-bottom: 2px solid $light-background;
-      border-left: none;
-      border-right: none;
-      font-size: 16px;
-      text-align: left;
-      font-family: "Poppins", sans-serif;
-      padding: 16px 24px;
+      @include table-header;
     }
 
     td.mat-cell {
-      background-color: $white;
-      border-bottom: 2px solid $light-background;
-      border-left: none;
-      border-right: none;
-      color: $black;
-      font-family: "Poppins", sans-serif;
-      padding: 16px 24px;
+      @include table-cell;
+    }
+
+    .cdk-column-expand {
+      width: 60px !important;
+      text-align: center !important;
+
+      th,
+      td {
+        text-align: center !important;
+      }
+    }
+
+    .cdk-column-actions {
+      text-align: center !important;
+
+      th,
+      td {
+        text-align: center !important;
+      }
+    }
+
+    .cdk-column-telefon,
+    .cdk-column-ilosc_obiektow {
+      th,
+      td {
+        text-align: center !important;
+      }
+    }
+
+    .cdk-column-imie_nazwisko,
+    .cdk-column-adres {
+      th,
+      td {
+        @include table-cell(left);
+      }
     }
   }
 }
 
 .example-element-row {
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  @include hover-transition(background-color);
 
   &:hover {
     td {
@@ -110,15 +115,12 @@
   padding: 16px;
 
   .text-center {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    @include flex-center(column);
 
     p {
       color: $gray-border-darker;
       font-size: 14px;
-      font-family: "Poppins", sans-serif;
+      @include poppins-font();
     }
   }
 }
@@ -129,58 +131,26 @@
   margin-top: 16px;
 
   ::ng-deep {
-    .mat-paginator-container {
-      padding: 8px 16px;
-      min-height: 56px;
-      color: $black;
-      font-family: "Poppins", sans-serif;
-    }
-
-    .mat-paginator-range-label {
-      margin: 0 32px 0 24px;
-      font-family: "Poppins", sans-serif;
-      color: $black;
-    }
-
-    .mat-mdc-icon-button[disabled] .mat-mdc-paginator-icon {
-      fill: $gray-border-darker;
-    }
-
-    .mat-mdc-icon-button .mat-mdc-paginator-icon {
-      fill: $black;
-    }
-
-    .mat-mdc-select-value {
-      color: $black;
-      font-family: "Poppins", sans-serif;
-    }
-
-    .mat-mdc-form-field {
-      font-family: "Poppins", sans-serif;
-    }
+    @include mat-paginator-override;
   }
 }
 
 .action-icons-container-middle {
-  display: flex;
-  align-items: center;
-  gap: auto;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  width: 100% !important;
+  margin: 0 auto !important;
 }
 
 .action-icons {
-  width: 20px !important;
-  height: 20px !important;
-  font-size: 20px !important;
-  cursor: pointer;
-  transition: filter 0.2s ease;
-
-  &:hover {
-    @include icon-orange-filter;
-  }
+  @include action-icon;
 }
 
 .mat-icon-button {
   color: $black;
+  @include hover-transition(background-color);
 
   &:hover {
     background-color: rgba(0, 0, 0, 0.04);
@@ -188,15 +158,43 @@
 
   mat-icon {
     color: $black;
-    transition: transform 0.2s ease;
+    @include scale-hover;
   }
 }
 
-button:hover mat-icon {
-  transform: scale(1.1);
+::ng-deep {
+  @include mat-table-override;
+
+  .mat-mdc-table {
+    .cdk-column-imie_nazwisko,
+    .cdk-column-adres {
+      .mat-mdc-header-cell,
+      .mat-mdc-cell {
+        text-align: left !important;
+        justify-content: flex-start !important;
+      }
+    }
+
+    .cdk-column-expand,
+    .cdk-column-actions,
+    .cdk-column-telefon,
+    .cdk-column-ilosc_obiektow {
+      .mat-mdc-header-cell,
+      .mat-mdc-cell {
+        text-align: center !important;
+        justify-content: center !important;
+      }
+    }
+    .cdk-column-actions {
+      .mat-mdc-cell {
+        @include flex-center;
+        padding: 16px 8px !important;
+      }
+    }
+  }
 }
 
-@media (max-width: 768px) {
+@include mobile-styles {
   .table-container {
     font-size: 14px;
 
@@ -207,8 +205,7 @@ button:hover mat-icon {
   }
 
   .action-icons {
-    width: 16px;
-    height: 16px;
+    @include action-icon(16px);
   }
 
   .pagination-container {

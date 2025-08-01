@@ -1,0 +1,203 @@
+@import "variables";
+
+@mixin poppins-font($weight: 400, $size: inherit) {
+  font-family: "Poppins", sans-serif;
+  font-weight: $weight;
+  @if $size != inherit {
+    font-size: $size;
+  }
+}
+
+@mixin flex-center($direction: row, $gap: 0) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @if $direction != row {
+    flex-direction: $direction;
+  }
+  @if $gap > 0 {
+    gap: $gap;
+  }
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-start($gap: 0) {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  @if $gap > 0 {
+    gap: $gap;
+  }
+}
+
+@mixin card-base {
+  background-color: $white;
+  color: $black;
+  border-radius: 10px;
+  box-shadow: 6px 0px 10px rgba(0, 0, 0, 0.05);
+  @include poppins-font();
+}
+
+@mixin loading-container {
+  @include flex-center(column);
+  padding: 60px 20px;
+  min-height: 200px;
+
+  p {
+    color: $gray-border-darker;
+    font-size: 14px;
+    margin-top: 16px;
+    @include poppins-font();
+  }
+}
+
+@mixin table-cell-base($align: center) {
+  background-color: $white;
+  border-bottom: 2px solid $light-background;
+  border-left: none;
+  border-right: none;
+  color: $black;
+  @include poppins-font();
+  padding: 16px 24px;
+  text-align: $align !important;
+}
+
+@mixin table-header {
+  @include table-cell-base();
+  font-weight: 600;
+  font-size: 16px;
+}
+
+@mixin table-cell($align: center) {
+  @include table-cell-base($align);
+}
+
+@mixin button-base($width: auto, $height: auto) {
+  @include poppins-font(500);
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  @include flex-center();
+
+  @if $width != auto {
+    width: $width;
+  }
+  @if $height != auto {
+    height: $height;
+  }
+}
+
+@mixin button-primary {
+  @include button-base();
+  background-color: $main-orange;
+  color: $white;
+  border: 1px solid $main-orange;
+
+  &:hover {
+    background-color: $main-orange-hover;
+  }
+}
+
+@mixin button-secondary {
+  @include button-base();
+  background-color: $white;
+  color: $main-orange;
+  border: 1px solid $main-orange;
+
+  &:hover {
+    background-color: $main-orange-transparent-30;
+  }
+}
+
+@mixin action-icon($size: 20px) {
+  width: $size !important;
+  height: $size !important;
+  font-size: $size !important;
+  cursor: pointer;
+  transition: filter 0.2s ease;
+
+  &:hover {
+    @include icon-orange-filter;
+  }
+}
+
+@mixin action-icons-container {
+  @include flex-center(row, 8px);
+  width: 100% !important;
+  margin: 0 auto !important;
+}
+
+@mixin mobile-styles {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin tablet-styles {
+  @media (max-width: 1200px) {
+    @content;
+  }
+}
+
+@mixin hover-transition($property: all, $duration: 0.2s) {
+  transition: $property $duration ease;
+}
+
+@mixin scale-hover($scale: 1.1) {
+  @include hover-transition(transform);
+
+  &:hover {
+    transform: scale($scale);
+  }
+}
+@mixin mat-table-override {
+  .mat-mdc-table {
+    .mat-mdc-header-cell {
+      text-align: center !important;
+      justify-content: center !important;
+    }
+
+    .mat-mdc-cell {
+      text-align: center !important;
+      justify-content: center !important;
+    }
+  }
+}
+
+@mixin mat-paginator-override {
+  .mat-paginator-container {
+    padding: 8px 16px;
+    min-height: 56px;
+    color: $black;
+    @include poppins-font();
+  }
+
+  .mat-paginator-range-label {
+    margin: 0 32px 0 24px;
+    @include poppins-font();
+    color: $black;
+  }
+
+  .mat-mdc-icon-button[disabled] .mat-mdc-paginator-icon {
+    fill: $gray-border-darker;
+  }
+
+  .mat-mdc-icon-button .mat-mdc-paginator-icon {
+    fill: $black;
+  }
+
+  .mat-mdc-select-value {
+    color: $black;
+    @include poppins-font();
+  }
+
+  .mat-mdc-form-field {
+    @include poppins-font();
+  }
+}
