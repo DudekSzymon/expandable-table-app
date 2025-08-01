@@ -1,6 +1,5 @@
 @import "variables";
 
-// Główny kontener formularza
 .add-edit-form {
   display: flex;
   overflow-x: hidden;
@@ -19,7 +18,6 @@
   }
 }
 
-// Przycisk powrotu
 .go-back-icon {
   color: $main-orange;
   background-color: $main-orange-transparent-30;
@@ -40,7 +38,6 @@
   }
 }
 
-// Tytuł strony
 .title-label-standalone {
   font-family: "Poppins", sans-serif !important;
   font-size: 32px;
@@ -55,7 +52,6 @@
   }
 }
 
-// Kontener dla przycisków
 .button-container {
   display: flex;
   gap: 30px;
@@ -65,7 +61,6 @@
   padding-bottom: 35px;
 }
 
-// Style dla przycisków
 .button-cancel,
 .button-submit {
   width: 246px;
@@ -100,7 +95,6 @@
   }
 }
 
-// Sekcje rozwijane
 .section-toggle {
   display: flex;
   align-items: center;
@@ -126,7 +120,6 @@
   }
 }
 
-// Style dla pól formularza
 .mat-mdc-form-field {
   width: 100%;
   font-family: "Poppins", sans-serif;
@@ -137,7 +130,6 @@
   color: $black !important;
 }
 
-// Radio buttons
 .mat-mdc-radio-group {
   padding-left: 0px;
 }
@@ -150,13 +142,11 @@
   border-color: $main-orange !important;
 }
 
-// Etykiety
 .select-label {
   font-family: "Poppins", sans-serif !important;
   color: $black !important;
 }
 
-// Responsywność - podstawowe siatki
 .row {
   display: flex !important;
   flex-wrap: wrap !important;
@@ -185,7 +175,6 @@
   max-width: calc(100% - 10px) !important;
 }
 
-// Responsywność dla mniejszych ekranów
 @media (max-width: 1200px) {
   .col-3 {
     flex: 0 0 calc(50% - 10px) !important;

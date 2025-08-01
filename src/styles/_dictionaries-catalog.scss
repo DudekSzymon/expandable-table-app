@@ -1,6 +1,5 @@
 @import "variables";
 
-// Główna sekcja z tabelą
 .second-section {
   background-color: $white;
   color: $black;
@@ -10,7 +9,6 @@
   font-family: "Poppins", sans-serif;
 }
 
-// Sekcja z filtrami na górze
 .first-section {
   font-family: "Poppins", sans-serif;
   justify-content: center !important;
@@ -48,7 +46,6 @@
   }
 }
 
-// Filtry
 .pageable-filters {
   align-items: center;
   width: 100%;
@@ -80,7 +77,6 @@
   }
 }
 
-// Pole wyszukiwania
 .search-content {
   width: 300px;
   height: 40px;
@@ -108,7 +104,6 @@
   }
 }
 
-// Style dla statusów (badge'y)
 .outline-green,
 .outline-blue,
 .outline-orange,
@@ -147,7 +142,6 @@
   border-color: $outline-gray;
 }
 
-// Container dla całej tabeli
 .scroller {
   width: 100%;
 }
@@ -159,7 +153,6 @@
   margin-left: auto;
 }
 
-// Nagłówki tabel
 ::ng-deep .mat-sort-header-content,
 .mat-mdc-header-cell {
   font-size: 16px;
