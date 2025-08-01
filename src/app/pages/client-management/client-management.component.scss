@@ -1,18 +1,6 @@
-$main-orange: #f07b06;
-$main-orange-hover: #f28416;
-$main-orange-transparent-30: rgba(240, 123, 6, 0.3);
-$main-blue: #175c9e;
-$main-blue-hover: #0278b5;
-$white: #ffffff;
-$black: #2b2b2b;
-$gray-border: #d9d9d9;
-$gray-border-darker: #7d7d7d;
-$light-background: #e3e3e3;
-
-@mixin icon-orange-filter {
-  filter: invert(45%) sepia(67%) saturate(1261%) hue-rotate(4deg)
-    brightness(100%) contrast(95%);
-}
+@import "../../../styles/variables";
+@import "../../../styles/dictionaries";
+@import "../../../styles/dictionaries-catalog";
 
 .client-table-card {
   box-shadow: 6px 0px 10px rgba(0, 0, 0, 0.05);
@@ -22,14 +10,7 @@ $light-background: #e3e3e3;
   font-family: "Poppins", sans-serif;
 
   mat-card-header {
-    padding: 24px 24px 0;
-
-    mat-card-title h2 {
-      color: $black;
-      font-weight: 500;
-      font-family: "Poppins", sans-serif;
-      font-size: 32px;
-    }
+    display: none !important;
   }
 
   mat-card-content {
@@ -65,7 +46,8 @@ $light-background: #e3e3e3;
   table.catalog-table {
     min-width: 100%;
     background: $white;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0 4px;
     font-family: "Poppins", sans-serif;
 
     th.mat-header-cell {
@@ -78,7 +60,7 @@ $light-background: #e3e3e3;
       font-size: 16px;
       text-align: left;
       font-family: "Poppins", sans-serif;
-      padding: 12px 8px;
+      padding: 16px 24px;
     }
 
     td.mat-cell {
@@ -88,7 +70,7 @@ $light-background: #e3e3e3;
       border-right: none;
       color: $black;
       font-family: "Poppins", sans-serif;
-      padding: 12px 8px;
+      padding: 16px 24px;
     }
   }
 }
@@ -117,53 +99,6 @@ $light-background: #e3e3e3;
     border: none;
     padding: 0;
   }
-}
-
-.client-badge {
-  display: inline-block;
-  padding: 4px 12px;
-  border-radius: 999px;
-  border: 1px solid transparent;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 1;
-  font-family: "Poppins", sans-serif;
-
-  &.type-0 {
-    background-color: #d0d6ec;
-    color: #5b6fbb;
-    border-color: #445ab0;
-  }
-
-  &.type-1 {
-    background-color: #d0ece7;
-    color: #20a18d;
-    border-color: #3dae9c;
-  }
-}
-
-.action-icons {
-  width: 16px;
-  height: 16px;
-  object-fit: contain;
-  vertical-align: middle;
-  cursor: pointer;
-  margin-right: 8px;
-  transition: filter 0.2s ease;
-
-  &:hover {
-    @include icon-orange-filter;
-  }
-
-  &:last-child {
-    margin-right: 0;
-  }
-}
-
-.action-icons-container-middle {
-  display: flex;
-  align-items: center;
-  gap: 8px;
 }
 
 .expanded-row-content {
@@ -201,10 +136,6 @@ $light-background: #e3e3e3;
       font-family: "Poppins", sans-serif;
     }
 
-    .mat-paginator-page-size {
-      align-items: center;
-    }
-
     .mat-paginator-range-label {
       margin: 0 32px 0 24px;
       font-family: "Poppins", sans-serif;
@@ -230,15 +161,26 @@ $light-background: #e3e3e3;
   }
 }
 
-mat-icon {
-  transition: transform 0.2s ease;
-  color: $black;
+// Ikony akcji
+.action-icons-container-middle {
+  display: flex;
+  align-items: center;
+  gap: auto;
 }
 
-button:hover mat-icon {
-  transform: scale(1.1);
+.action-icons {
+  width: 20px !important;
+  height: 20px !important;
+  font-size: 20px !important;
+  cursor: pointer;
+  transition: filter 0.2s ease;
+
+  &:hover {
+    @include icon-orange-filter;
+  }
 }
 
+// Przyciski rozwijania
 .mat-icon-button {
   color: $black;
 
@@ -248,20 +190,16 @@ button:hover mat-icon {
 
   mat-icon {
     color: $black;
+    transition: transform 0.2s ease;
   }
 }
 
-.min-width {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+button:hover mat-icon {
+  transform: scale(1.1);
 }
 
+// Responsywność
 @media (max-width: 768px) {
-  .container-fluid {
-    padding: 16px 8px;
-  }
-
   .table-container {
     font-size: 14px;
 
@@ -271,14 +209,9 @@ button:hover mat-icon {
     }
   }
 
-  .client-badge {
-    padding: 2px 8px;
-    font-size: 12px;
-  }
-
   .action-icons {
-    width: 14px;
-    height: 14px;
+    width: 16px;
+    height: 16px;
   }
 
   .pagination-container {
@@ -295,33 +228,4 @@ button:hover mat-icon {
       }
     }
   }
-}
-
-::ng-deep .mat-mdc-card {
-  background-color: $white !important;
-  color: $black !important;
-  box-shadow: 6px 0px 10px rgba(0, 0, 0, 0.05) !important;
-}
-
-::ng-deep .mat-mdc-card-content {
-  background-color: $white !important;
-  color: $black !important;
-}
-
-::ng-deep .mat-mdc-table {
-  background-color: $white !important;
-  color: $black !important;
-  font-family: "Poppins", sans-serif !important;
-}
-
-::ng-deep .mat-mdc-header-cell {
-  color: $black !important;
-  font-weight: 600 !important;
-  font-family: "Poppins", sans-serif !important;
-  font-size: 16px !important;
-}
-
-::ng-deep .mat-mdc-cell {
-  color: $black !important;
-  font-family: "Poppins", sans-serif !important;
 }

@@ -1,0 +1,92 @@
+@import "variables";
+
+// Podstawowe style dla linków
+a {
+  color: $black;
+  text-decoration: underline;
+  text-decoration-color: $black;
+  text-underline-offset: 2px;
+}
+
+a:hover,
+a:focus {
+  color: $main-orange;
+  text-decoration-color: $main-orange;
+}
+
+// Style dla tabel
+thead,
+tbody,
+tfoot,
+th {
+  background-color: $white !important;
+  border-bottom-width: 2px !important;
+  color: $black;
+  border-bottom: 2px solid $light-background;
+  font-family: "Poppins", sans-serif;
+}
+
+td {
+  background-color: $white;
+  border-bottom-width: 2px !important;
+  border-bottom: 2px solid $light-background;
+  color: $black;
+  font-family: "Poppins", sans-serif;
+}
+
+.mat-mdc-table {
+  background-color: $white;
+  border-collapse: separate !important;
+  border-spacing: 0 4px !important;
+}
+
+// Style dla ikon akcji
+.action-icons {
+  height: 16px;
+  margin-right: 8px;
+  cursor: pointer;
+  transition: filter 0.2s ease;
+}
+
+.action-icons:hover {
+  @include icon-orange-filter;
+}
+
+.action-icons:last-child {
+  margin-right: 0;
+}
+
+.action-icons-container-middle {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end !important;
+}
+
+// Material Design overrides
+.mat-mdc-card {
+  background-color: $white !important;
+  box-shadow: 6px 0px 10px rgba(0, 0, 0, 0.05) !important;
+}
+
+.mat-mdc-card-content {
+  background-color: $white !important;
+}
+
+// Paginator styles
+.mat-mdc-paginator-container {
+  color: $black;
+  font-family: "Poppins", sans-serif !important;
+
+  .mat-mdc-icon-button[disabled] .mat-mdc-paginator-icon {
+    fill: $gray-border-darker;
+  }
+
+  .mat-mdc-icon-button .mat-mdc-paginator-icon {
+    fill: $black;
+  }
+}
+
+// Progress spinner
+.mat-mdc-progress-spinner {
+  --mdc-circular-progress-active-indicator-color: #{$main-blue} !important;
+}

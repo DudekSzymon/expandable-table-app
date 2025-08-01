@@ -1,0 +1,36 @@
+// Podstawowe kolory z tosca-fe-main
+$white: #ffffff;
+$black: #2b2b2b;
+$light-background: #e3e3e3;
+
+// Główne kolory marki Tosca
+$main-blue: #175c9e;
+$main-blue-hover: #0278b5;
+$main-blue-transparent: rgba(2, 120, 181, 0.5);
+$main-blue-transparent-30: rgba(2, 120, 181, 0.3);
+
+$main-orange: #f07b06;
+$main-orange-hover: #f28416;
+$main-orange-transparent: rgba(240, 123, 6, 0.5);
+$main-orange-transparent-30: rgba(240, 123, 6, 0.3);
+
+// Kolory dla granic i tekstu
+$gray-border: #d9d9d9;
+$gray-border-darker: #7d7d7d;
+$gray-border-lighter: #d9d9d980;
+
+// Kolory dla statusów/badge'ów
+$outline-green: #189e89;
+$outline-green-transparent: rgba(24, 158, 137, 0.2);
+$outline-blue: #175c9e;
+$outline-blue-transparent: rgba(23, 92, 158, 0.2);
+$outline-orange: #d47c02;
+$outline-orange-transparent: rgba(212, 124, 2, 0.2);
+$outline-gray: #616161;
+$outline-gray-transparent: rgba(97, 97, 97, 0.2);
+
+// Mixin dla ikona hover effect
+@mixin icon-orange-filter {
+  filter: invert(45%) sepia(67%) saturate(1261%) hue-rotate(4deg)
+    brightness(100%) contrast(95%);
+}
