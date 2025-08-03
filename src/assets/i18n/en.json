@@ -1,0 +1,61 @@
+{
+  "APP": {
+    "TITLE": "Clients - Task"
+  },
+  "CLIENT_MANAGEMENT": {
+    "TITLE": "Clients",
+    "LOADING": "Loading clients...",
+    "LOADING_DATA": "Loading data...",
+    "EXPAND_DETAILS": "Expand details",
+    "EXPAND_ROW_FOR": "Expand row for",
+    "NO_DATA": "No data for tab",
+    "ACTIONS": {
+      "ACTIONS": "Actions",
+      "VIEW": "View",
+      "EDIT": "Edit",
+      "DELETE": "Delete"
+    },
+    "COLUMNS": {
+      "NAME": "First and Last Name",
+      "ADDRESS": "Address",
+      "PHONE": "Phone",
+      "OBJECTS_COUNT": "Objects Count"
+    }
+  },
+  "TABS": {
+    "OFFERS": "Offers",
+    "INVOICES": "Invoices",
+    "CONTRACTS": "Contracts"
+  },
+  "OFFERS": {
+    "ID": "ID",
+    "ORDER_DATE": "Order Date",
+    "START": "Start",
+    "END": "End",
+    "ADDRESS": "Address",
+    "SERVICE_TYPE": "Service Type",
+    "CLIENT": "Client",
+    "EMPLOYEE": "Employee"
+  },
+  "INVOICES": {
+    "ID": "ID",
+    "CLIENT": "Client",
+    "FILE_NAME": "File Name"
+  },
+  "CONTRACTS": {
+    "ID": "ID",
+    "CLIENT": "Client",
+    "FILE_NAME": "File Name"
+  },
+  "PAGINATION": {
+    "ITEMS_PER_PAGE": "Items per page:",
+    "NEXT_PAGE": "Next page",
+    "PREVIOUS_PAGE": "Previous page",
+    "FIRST_PAGE": "First page",
+    "LAST_PAGE": "Last page",
+    "SELECT_PAGE": "Select page"
+  },
+  "BUTTONS": {
+    "DOWNLOAD": "Download"
+  }
+}

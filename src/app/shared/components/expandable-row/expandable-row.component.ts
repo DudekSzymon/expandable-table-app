@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { MaterialModule } from '../../material.module';
 import {
   ExpandedRowData,
@@ -11,7 +12,7 @@ import { TAB_CONFIGS } from '../../constants/table-config';
 @Component({
   selector: 'app-expandable-row',
   standalone: true,
-  imports: [CommonModule, MaterialModule],
+  imports: [CommonModule, MaterialModule, TranslateModule],
   templateUrl: './expandable-row.component.html',
   styleUrls: ['./expandable-row.component.scss'],
 })
@@ -19,6 +20,8 @@ export class ExpandableRowComponent {
   @Input() expandedData!: ExpandedRowData;
 
   tabConfigs: TabConfig[] = TAB_CONFIGS;
+
+  constructor(private translate: TranslateService) {}
 
   getTabData(tabKey: keyof ExpandedRowData): any[] {
     return this.expandedData[tabKey] || [];
@@ -41,6 +44,14 @@ export class ExpandableRowComponent {
       default:
         return value;
     }
+  }
+
+  getColumnLabel(column: ColumnConfig): string {
+    return this.translate.instant(column.label);
+  }
+
+  getTabLabel(tabConfig: TabConfig): string {
+    return this.translate.instant(tabConfig.label);
   }
 
   private formatDate(dateString: string): string {

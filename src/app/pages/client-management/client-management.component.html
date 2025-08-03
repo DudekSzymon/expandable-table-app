@@ -4,14 +4,16 @@
       <mat-card class="client-table-card">
         <mat-card-header>
           <mat-card-title>
-            <h2 class="mb-0">Klienci</h2>
+            <h2 class="mb-0">{{ "CLIENT_MANAGEMENT.TITLE" | translate }}</h2>
           </mat-card-title>
         </mat-card-header>
 
         <mat-card-content>
           <div *ngIf="isLoadingClients" class="loading-container">
             <mat-spinner diameter="40"></mat-spinner>
-            <p class="mt-2 mb-0">Ładowanie klientów...</p>
+            <p class="mt-2 mb-0">
+              {{ "CLIENT_MANAGEMENT.LOADING" | translate }}
+            </p>
           </div>
 
           <div *ngIf="!isLoadingClients" class="table-container">
@@ -35,12 +37,15 @@
                       mat-icon-button
                       (click)="toggleRow(element)"
                       [attr.aria-label]="
-                        'Rozwiń wiersz dla ' +
+                        ('CLIENT_MANAGEMENT.EXPAND_ROW_FOR' | translate) +
+                        ' ' +
                         element.imie +
                         ' ' +
                         element.nazwisko
                       "
-                      matTooltip="Rozwiń szczegóły"
+                      [matTooltip]="
+                        'CLIENT_MANAGEMENT.EXPAND_DETAILS' | translate
+                      "
                     >
                       <mat-icon>
                         {{
@@ -57,7 +62,9 @@
                   *ngFor="let column of columnsConfig"
                   [matColumnDef]="column.key"
                 >
-                  <th mat-header-cell *matHeaderCellDef>{{ column.label }}</th>
+                  <th mat-header-cell *matHeaderCellDef>
+                    {{ column.label | translate }}
+                  </th>
                   <td mat-cell *matCellDef="let element">
                     <ng-container [ngSwitch]="column.key">
                       <span *ngSwitchCase="'imie_nazwisko'">
@@ -71,26 +78,34 @@
                 </ng-container>
 
                 <ng-container matColumnDef="actions">
-                  <th mat-header-cell *matHeaderCellDef>Akcje</th>
+                  <th mat-header-cell *matHeaderCellDef>
+                    {{ "CLIENT_MANAGEMENT.ACTIONS.ACTIONS" | translate }}
+                  </th>
                   <td mat-cell *matCellDef="let element">
                     <span class="action-icons-container-middle">
                       <mat-icon
                         class="action-icons view-icon"
-                        matTooltip="Podgląd"
+                        [matTooltip]="
+                          'CLIENT_MANAGEMENT.ACTIONS.VIEW' | translate
+                        "
                         (click)="viewClient(element, $event)"
                       >
                         visibility
                       </mat-icon>
                       <mat-icon
                         class="action-icons edit-icon"
-                        matTooltip="Edytuj"
+                        [matTooltip]="
+                          'CLIENT_MANAGEMENT.ACTIONS.EDIT' | translate
+                        "
                         (click)="editClient(element, $event)"
                       >
                         edit
                       </mat-icon>
                       <mat-icon
                         class="action-icons delete-icon"
-                        matTooltip="Usuń"
+                        [matTooltip]="
+                          'CLIENT_MANAGEMENT.ACTIONS.DELETE' | translate
+                        "
                         (click)="deleteClient(element, $event)"
                       >
                         delete
@@ -113,7 +128,9 @@
                     >
                       <div *ngIf="isLoadingExpanded" class="text-center p-4">
                         <mat-spinner diameter="40"></mat-spinner>
-                        <p class="mt-2 mb-0">Ładowanie danych...</p>
+                        <p class="mt-2 mb-0">
+                          {{ "CLIENT_MANAGEMENT.LOADING_DATA" | translate }}
+                        </p>
                       </div>
 
                       <app-expandable-row
@@ -149,7 +166,7 @@
               [showFirstLastButtons]="true"
               (page)="onPageChange($event)"
               class="pagination-container"
-              aria-label="Wybierz stronę"
+              [attr.aria-label]="'PAGINATION.SELECT_PAGE' | translate"
             >
             </mat-paginator>
           </div>

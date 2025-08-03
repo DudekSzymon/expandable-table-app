@@ -1,0 +1,61 @@
+{
+  "APP": {
+    "TITLE": "Klienci - Zadanie"
+  },
+  "CLIENT_MANAGEMENT": {
+    "TITLE": "Klienci",
+    "LOADING": "Ładowanie klientów...",
+    "LOADING_DATA": "Ładowanie danych...",
+    "EXPAND_DETAILS": "Rozwiń szczegóły",
+    "EXPAND_ROW_FOR": "Rozwiń wiersz dla",
+    "NO_DATA": "Brak danych dla zakładki",
+    "ACTIONS": {
+      "ACTIONS": "Akcje",
+      "VIEW": "Podgląd",
+      "EDIT": "Edytuj",
+      "DELETE": "Usuń"
+    },
+    "COLUMNS": {
+      "NAME": "Imię i nazwisko",
+      "ADDRESS": "Adres",
+      "PHONE": "Telefon",
+      "OBJECTS_COUNT": "Ilość obiektów"
+    }
+  },
+  "TABS": {
+    "OFFERS": "Oferty",
+    "INVOICES": "Faktury",
+    "CONTRACTS": "Umowy"
+  },
+  "OFFERS": {
+    "ID": "ID",
+    "ORDER_DATE": "Data zlecenia",
+    "START": "Rozpoczęcie",
+    "END": "Zakończenie",
+    "ADDRESS": "Adres",
+    "SERVICE_TYPE": "Rodzaj usługi",
+    "CLIENT": "Klient",
+    "EMPLOYEE": "Pracownik"
+  },
+  "INVOICES": {
+    "ID": "ID",
+    "CLIENT": "Klient",
+    "FILE_NAME": "Nazwa pliku"
+  },
+  "CONTRACTS": {
+    "ID": "ID",
+    "CLIENT": "Klient",
+    "FILE_NAME": "Nazwa pliku"
+  },
+  "PAGINATION": {
+    "ITEMS_PER_PAGE": "Wyników na stronę:",
+    "NEXT_PAGE": "Następna strona",
+    "PREVIOUS_PAGE": "Poprzednia strona",
+    "FIRST_PAGE": "Pierwsza strona",
+    "LAST_PAGE": "Ostatnia strona",
+    "SELECT_PAGE": "Wybierz stronę"
+  },
+  "BUTTONS": {
+    "DOWNLOAD": "Pobierz"
+  }
+}

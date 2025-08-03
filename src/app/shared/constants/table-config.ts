@@ -1,43 +1,55 @@
 import { ColumnConfig, TabConfig } from '../models/client.model';
 
 export const CLIENT_COLUMNS: ColumnConfig[] = [
-  { key: 'imie_nazwisko', label: 'Imię i nazwisko', type: 'text' },
-  { key: 'adres', label: 'Adres', type: 'text' },
-  { key: 'telefon', label: 'Telefon', type: 'text' },
-  { key: 'ilosc_obiektow', label: 'Ilość obiektów', type: 'text' },
+  {
+    key: 'imie_nazwisko',
+    label: 'CLIENT_MANAGEMENT.COLUMNS.NAME',
+    type: 'text',
+  },
+  { key: 'adres', label: 'CLIENT_MANAGEMENT.COLUMNS.ADDRESS', type: 'text' },
+  { key: 'telefon', label: 'CLIENT_MANAGEMENT.COLUMNS.PHONE', type: 'text' },
+  {
+    key: 'ilosc_obiektow',
+    label: 'CLIENT_MANAGEMENT.COLUMNS.OBJECTS_COUNT',
+    type: 'text',
+  },
 ];
 
 export const TAB_CONFIGS: TabConfig[] = [
   {
-    label: 'Oferty',
+    label: 'TABS.OFFERS',
     key: 'offers',
     columns: [
-      { key: 'id', label: 'ID', type: 'text' },
-      { key: 'data_zlecenia', label: 'Data zlecenia', type: 'date' },
-      { key: 'rozpoczecie', label: 'Rozpoczęcie', type: 'datetime' },
-      { key: 'zakonczenie', label: 'Zakończenie', type: 'datetime' },
-      { key: 'adres', label: 'Adres', type: 'text' },
-      { key: 'rodzaj', label: 'Rodzaj usługi', type: 'text' },
-      { key: 'imie_nazwisko_klienta', label: 'Klient', type: 'text' },
-      { key: 'imie_nazwisko_pracownika', label: 'Pracownik', type: 'text' },
+      { key: 'id', label: 'OFFERS.ID', type: 'text' },
+      { key: 'data_zlecenia', label: 'OFFERS.ORDER_DATE', type: 'date' },
+      { key: 'rozpoczecie', label: 'OFFERS.START', type: 'datetime' },
+      { key: 'zakonczenie', label: 'OFFERS.END', type: 'datetime' },
+      { key: 'adres', label: 'OFFERS.ADDRESS', type: 'text' },
+      { key: 'rodzaj', label: 'OFFERS.SERVICE_TYPE', type: 'text' },
+      { key: 'imie_nazwisko_klienta', label: 'OFFERS.CLIENT', type: 'text' },
+      {
+        key: 'imie_nazwisko_pracownika',
+        label: 'OFFERS.EMPLOYEE',
+        type: 'text',
+      },
     ],
   },
   {
-    label: 'Faktury',
+    label: 'TABS.INVOICES',
     key: 'invoices',
     columns: [
-      { key: 'id', label: 'ID', type: 'text' },
-      { key: 'imie_nazwisko_klienta', label: 'Klient', type: 'text' },
-      { key: 'nazwa_pliku', label: 'Nazwa pliku', type: 'file' },
+      { key: 'id', label: 'INVOICES.ID', type: 'text' },
+      { key: 'imie_nazwisko_klienta', label: 'INVOICES.CLIENT', type: 'text' },
+      { key: 'nazwa_pliku', label: 'INVOICES.FILE_NAME', type: 'file' },
     ],
   },
   {
-    label: 'Umowy',
+    label: 'TABS.CONTRACTS',
     key: 'contracts',
     columns: [
-      { key: 'id', label: 'ID', type: 'text' },
-      { key: 'imie_nazwisko_klienta', label: 'Klient', type: 'text' },
-      { key: 'nazwa_pliku', label: 'Nazwa pliku', type: 'file' },
+      { key: 'id', label: 'CONTRACTS.ID', type: 'text' },
+      { key: 'imie_nazwisko_klienta', label: 'CONTRACTS.CLIENT', type: 'text' },
+      { key: 'nazwa_pliku', label: 'CONTRACTS.FILE_NAME', type: 'file' },
     ],
   },
 ];
