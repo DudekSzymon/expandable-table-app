@@ -128,7 +128,6 @@ export class ClientManagementComponent implements OnInit, OnDestroy {
   }
 
   toggleRow(element: Client): void {
-    console.log('toggleRow called for:', element);
     if (this.expandedElement === element) {
       this.expandedElement = null;
       this.expandedData = null;
@@ -143,8 +142,6 @@ export class ClientManagementComponent implements OnInit, OnDestroy {
   private loadExpandedData(client: Client): void {
     this.isLoadingExpanded = true;
     const clientFullName = `${client.imie} ${client.nazwisko}`;
-    console.log('Loading expanded data for client:', clientFullName);
-
     this.dataService
       .getExpandedRowData(clientFullName)
       .pipe(
@@ -158,7 +155,6 @@ export class ClientManagementComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (data) => {
           this.expandedData = data;
-          console.log('Updating breadcrumb with client:', clientFullName);
           this.headerService.updateBreadcrumbWithClient(
             'Klienci',
             'CLIENT_MANAGEMENT.TITLE',
@@ -169,7 +165,6 @@ export class ClientManagementComponent implements OnInit, OnDestroy {
   }
 
   onTabChanged(tabKey: string): void {
-    console.log('Tab changed to:', tabKey);
     this.activeTab = tabKey;
 
     if (this.expandedElement) {
@@ -187,12 +182,6 @@ export class ClientManagementComponent implements OnInit, OnDestroy {
           tabTranslationKey = 'TABS.CONTRACTS';
           break;
       }
-
-      console.log(
-        'Updating breadcrumb with client and tab:',
-        clientFullName,
-        this.translate.instant(tabTranslationKey)
-      );
 
       if (tabTranslationKey) {
         this.headerService.updateBreadcrumbWithClientAndTab(
@@ -219,16 +208,13 @@ export class ClientManagementComponent implements OnInit, OnDestroy {
 
   viewClient(client: Client, event: Event): void {
     event.stopPropagation();
-    console.log('Podgląd klienta:', client);
   }
 
   editClient(client: Client, event: Event): void {
     event.stopPropagation();
-    console.log('Edytowanie klienta:', client);
   }
 
   deleteClient(client: Client, event: Event): void {
     event.stopPropagation();
-    console.log('Usuwanie klienta:', client);
   }
 }

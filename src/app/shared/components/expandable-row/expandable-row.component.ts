@@ -27,6 +27,7 @@ export class ExpandableRowComponent implements AfterViewInit {
   @Output() tabChanged = new EventEmitter<string>();
 
   tabConfigs: TabConfig[] = TAB_CONFIGS;
+  activeTabIndex: number = 0; // Dodajemy śledzenie aktywnej zakładki
 
   constructor(private translate: TranslateService) {}
 
@@ -39,9 +40,33 @@ export class ExpandableRowComponent implements AfterViewInit {
   }
 
   onTabChanged(index: number): void {
+    this.activeTabIndex = index; // Aktualizujemy aktywną zakładkę
     const tabKey = this.tabConfigs[index]?.key;
     if (tabKey) {
       this.tabChanged.emit(tabKey);
+    }
+  }
+
+  // Nowa metoda do pobierania nazwy aktywnej zakładki
+  getActiveTabLabel(): string {
+    const activeTab = this.tabConfigs[this.activeTabIndex];
+    return activeTab ? this.translate.instant(activeTab.label) : '';
+  }
+
+  // Metoda do pobierania ikony dla aktywnej zakładki
+  getActiveTabIcon(): string {
+    const activeTab = this.tabConfigs[this.activeTabIndex];
+    if (!activeTab) return 'description';
+
+    switch (activeTab.key) {
+      case 'offers':
+        return 'business_center';
+      case 'invoices':
+        return 'receipt';
+      case 'contracts':
+        return 'description';
+      default:
+        return 'description';
     }
   }
 
@@ -99,7 +124,5 @@ export class ExpandableRowComponent implements AfterViewInit {
     return column.type === 'file';
   }
 
-  downloadFile(fileName: string): void {
-    console.log('Pobieranie pliku:', fileName);
-  }
+  downloadFile(fileName: string): void {}
 }

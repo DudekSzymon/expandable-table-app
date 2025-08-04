@@ -7,6 +7,33 @@
   min-height: 200px;
 }
 
+.tab-header {
+  margin-bottom: 16px;
+
+  .tab-title {
+    @include flex-start(8px);
+    margin: 0 0 12px 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    @include poppins-font(600, 18px);
+
+    .tab-icon {
+      color: #1976d2;
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .tab-divider {
+    height: 2px;
+    background: linear-gradient(90deg, #1976d2 0%, #e3f2fd 100%);
+    border-radius: 1px;
+    margin-bottom: 8px;
+  }
+}
+
 .custom-tabs {
   ::ng-deep {
     .mat-tab-header {
@@ -126,6 +153,19 @@
 }
 
 @include mobile-styles {
+  .tab-header {
+    .tab-title {
+      font-size: 16px;
+      @include poppins-font(600, 16px);
+
+      .tab-icon {
+        font-size: 18px;
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+
   .custom-tabs {
     ::ng-deep {
       .mat-tab-label {
