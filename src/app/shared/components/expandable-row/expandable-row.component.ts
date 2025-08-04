@@ -1,4 +1,10 @@
-import { Component, Input } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  AfterViewInit,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { MaterialModule } from '../../material.module';
@@ -16,12 +22,28 @@ import { TAB_CONFIGS } from '../../constants/table-config';
   templateUrl: './expandable-row.component.html',
   styleUrls: ['./expandable-row.component.scss'],
 })
-export class ExpandableRowComponent {
+export class ExpandableRowComponent implements AfterViewInit {
   @Input() expandedData!: ExpandedRowData;
+  @Output() tabChanged = new EventEmitter<string>();
 
   tabConfigs: TabConfig[] = TAB_CONFIGS;
 
   constructor(private translate: TranslateService) {}
+
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      if (this.tabConfigs.length > 0) {
+        this.tabChanged.emit(this.tabConfigs[0].key);
+      }
+    }, 0);
+  }
+
+  onTabChanged(index: number): void {
+    const tabKey = this.tabConfigs[index]?.key;
+    if (tabKey) {
+      this.tabChanged.emit(tabKey);
+    }
+  }
 
   getTabData(tabKey: keyof ExpandedRowData): any[] {
     return this.expandedData[tabKey] || [];

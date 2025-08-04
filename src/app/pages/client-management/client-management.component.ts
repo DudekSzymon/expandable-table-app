@@ -14,6 +14,7 @@ import { takeUntil, catchError, finalize } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { MaterialModule } from '../../shared/material.module';
 import { DataService } from '../../core/services/data.service';
+import { HeaderService } from '../../core/services/header.service';
 import {
   Client,
   ExpandedRowData,
@@ -58,6 +59,7 @@ export class ClientManagementComponent implements OnInit, OnDestroy {
   isLoadingExpanded = false;
   isLoadingClients = false;
   error: string | null = null;
+  activeTab: string | null = null;
 
   totalCount = 0;
   pageSize = 5;
@@ -66,7 +68,8 @@ export class ClientManagementComponent implements OnInit, OnDestroy {
 
   constructor(
     private dataService: DataService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private headerService: HeaderService
   ) {
     this.displayedColumns = [
       'expand',
@@ -77,6 +80,7 @@ export class ClientManagementComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loadClients();
+    this.headerService.resetToMain();
   }
 
   ngOnDestroy(): void {
@@ -111,6 +115,8 @@ export class ClientManagementComponent implements OnInit, OnDestroy {
           this.totalCount = response.totalCount;
           this.expandedElement = null;
           this.expandedData = null;
+          this.activeTab = null;
+          this.headerService.resetToMain();
         },
       });
   }
@@ -122,9 +128,12 @@ export class ClientManagementComponent implements OnInit, OnDestroy {
   }
 
   toggleRow(element: Client): void {
+    console.log('toggleRow called for:', element);
     if (this.expandedElement === element) {
       this.expandedElement = null;
       this.expandedData = null;
+      this.activeTab = null;
+      this.headerService.resetToMain();
     } else {
       this.expandedElement = element;
       this.loadExpandedData(element);
@@ -134,6 +143,7 @@ export class ClientManagementComponent implements OnInit, OnDestroy {
   private loadExpandedData(client: Client): void {
     this.isLoadingExpanded = true;
     const clientFullName = `${client.imie} ${client.nazwisko}`;
+    console.log('Loading expanded data for client:', clientFullName);
 
     this.dataService
       .getExpandedRowData(clientFullName)
@@ -148,8 +158,51 @@ export class ClientManagementComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (data) => {
           this.expandedData = data;
+          console.log('Updating breadcrumb with client:', clientFullName);
+          this.headerService.updateBreadcrumbWithClient(
+            'Klienci',
+            'CLIENT_MANAGEMENT.TITLE',
+            clientFullName
+          );
         },
       });
+  }
+
+  onTabChanged(tabKey: string): void {
+    console.log('Tab changed to:', tabKey);
+    this.activeTab = tabKey;
+
+    if (this.expandedElement) {
+      const clientFullName = `${this.expandedElement.imie} ${this.expandedElement.nazwisko}`;
+      let tabTranslationKey = '';
+
+      switch (tabKey) {
+        case 'offers':
+          tabTranslationKey = 'TABS.OFFERS';
+          break;
+        case 'invoices':
+          tabTranslationKey = 'TABS.INVOICES';
+          break;
+        case 'contracts':
+          tabTranslationKey = 'TABS.CONTRACTS';
+          break;
+      }
+
+      console.log(
+        'Updating breadcrumb with client and tab:',
+        clientFullName,
+        this.translate.instant(tabTranslationKey)
+      );
+
+      if (tabTranslationKey) {
+        this.headerService.updateBreadcrumbWithClientAndTab(
+          'Klienci',
+          'CLIENT_MANAGEMENT.TITLE',
+          clientFullName,
+          this.translate.instant(tabTranslationKey)
+        );
+      }
+    }
   }
 
   isExpanded(element: Client): boolean {

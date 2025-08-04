@@ -136,6 +136,7 @@
                       <app-expandable-row
                         *ngIf="!isLoadingExpanded && expandedData"
                         [expandedData]="expandedData"
+                        (tabChanged)="onTabChanged($event)"
                       >
                       </app-expandable-row>
                     </div>

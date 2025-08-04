@@ -1,5 +1,9 @@
 <div class="expandable-content p-3">
-  <mat-tab-group animationDuration="300ms" class="custom-tabs">
+  <mat-tab-group
+    animationDuration="300ms"
+    class="custom-tabs"
+    (selectedTabChange)="onTabChanged($event.index)"
+  >
     <mat-tab
       *ngFor="let tabConfig of tabConfigs"
       [label]="getTabLabel(tabConfig)"

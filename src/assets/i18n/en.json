@@ -4,6 +4,7 @@
   },
   "CLIENT_MANAGEMENT": {
     "TITLE": "Clients",
+    "CLIENT_DETAILS": "Client details",
     "LOADING": "Loading clients...",
     "LOADING_DATA": "Loading data...",
     "EXPAND_DETAILS": "Expand details",

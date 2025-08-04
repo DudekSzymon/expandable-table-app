@@ -4,6 +4,7 @@
   },
   "CLIENT_MANAGEMENT": {
     "TITLE": "Klienci",
+    "CLIENT_DETAILS": "Szczegóły klienta",
     "LOADING": "Ładowanie klientów...",
     "LOADING_DATA": "Ładowanie danych...",
     "EXPAND_DETAILS": "Rozwiń szczegóły",
