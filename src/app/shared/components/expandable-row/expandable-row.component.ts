@@ -27,7 +27,7 @@ export class ExpandableRowComponent implements AfterViewInit {
   @Output() tabChanged = new EventEmitter<string>();
 
   tabConfigs: TabConfig[] = TAB_CONFIGS;
-  activeTabIndex: number = 0; // Dodajemy śledzenie aktywnej zakładki
+  activeTabIndex: number = 0;
 
   constructor(private translate: TranslateService) {}
 
@@ -40,25 +40,20 @@ export class ExpandableRowComponent implements AfterViewInit {
   }
 
   onTabChanged(index: number): void {
-    this.activeTabIndex = index; // Aktualizujemy aktywną zakładkę
+    this.activeTabIndex = index;
     const tabKey = this.tabConfigs[index]?.key;
     if (tabKey) {
       this.tabChanged.emit(tabKey);
     }
   }
 
-  // Nowa metoda do pobierania nazwy aktywnej zakładki
   getActiveTabLabel(): string {
     const activeTab = this.tabConfigs[this.activeTabIndex];
     return activeTab ? this.translate.instant(activeTab.label) : '';
   }
 
-  // Metoda do pobierania ikony dla aktywnej zakładki
-  getActiveTabIcon(): string {
-    const activeTab = this.tabConfigs[this.activeTabIndex];
-    if (!activeTab) return 'description';
-
-    switch (activeTab.key) {
+  getTabIcon(tabConfig: TabConfig): string {
+    switch (tabConfig.key) {
       case 'offers':
         return 'business_center';
       case 'invoices':

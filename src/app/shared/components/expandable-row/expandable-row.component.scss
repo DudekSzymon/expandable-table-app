@@ -7,58 +7,91 @@
   min-height: 200px;
 }
 
-.tab-header {
+.table-header {
   margin-bottom: 16px;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 12px;
 
-  .tab-title {
+  .table-title {
     @include flex-start(8px);
-    margin: 0 0 12px 0;
-    font-size: 18px;
+    margin: 0;
+    font-size: 16px;
     font-weight: 600;
     color: #333;
-    @include poppins-font(600, 18px);
+    @include poppins-font(600, 16px);
 
-    .tab-icon {
+    .table-icon {
       color: #1976d2;
-      font-size: 20px;
-      width: 20px;
-      height: 20px;
+      font-size: 18px;
+      width: 18px;
+      height: 18px;
     }
-  }
-
-  .tab-divider {
-    height: 2px;
-    background: linear-gradient(90deg, #1976d2 0%, #e3f2fd 100%);
-    border-radius: 1px;
-    margin-bottom: 8px;
   }
 }
 
 .custom-tabs {
   ::ng-deep {
-    .mat-tab-header {
-      border-bottom: 1px solid #e0e0e0;
+    .mat-mdc-tab-header {
+      border-bottom: none;
+      background-color: transparent;
 
-      .mat-tab-label {
+      .mat-mdc-tab-label-container {
+        background-color: transparent;
+      }
+
+      .mat-mdc-tab-list {
+        border-bottom: none;
+      }
+
+      .mat-mdc-tab,
+      .mdc-tab {
         min-width: 120px;
-        padding: 0 24px;
+        padding: 0;
         font-weight: 500;
         color: #666;
+        background-color: #e0e0e0;
+        border: none;
+        margin-right: 0;
+        border-radius: 0;
         @include poppins-font(500);
+        @include hover-transition(background-color);
 
-        &.mat-tab-label-active {
-          color: #1976d2;
+        .mdc-tab__content {
+          padding: 12px 24px;
+        }
+
+        &:first-child {
+          border-radius: 8px 0 0 0;
+        }
+
+        &:last-child {
+          border-radius: 0 8px 0 0;
+        }
+
+        &.mdc-tab--active {
+          background-color: #1976d2;
+          color: white;
+
+          .mdc-tab__text-label {
+            color: white;
+          }
         }
       }
 
-      .mat-ink-bar {
-        background-color: #1976d2;
-        height: 3px;
+      .mdc-tab-indicator {
+        display: none;
+      }
+
+      .mat-mdc-tab-ripple {
+        display: none;
       }
     }
 
-    .mat-tab-body-wrapper {
-      padding-top: 16px;
+    .mat-mdc-tab-body-wrapper {
+      background-color: white;
+      border: 1px solid #e0e0e0;
+      border-radius: 0 0 8px 8px;
+      padding: 16px;
     }
   }
 }
@@ -153,15 +186,15 @@
 }
 
 @include mobile-styles {
-  .tab-header {
-    .tab-title {
-      font-size: 16px;
-      @include poppins-font(600, 16px);
+  .table-header {
+    .table-title {
+      font-size: 14px;
+      @include poppins-font(600, 14px);
 
-      .tab-icon {
-        font-size: 18px;
-        width: 18px;
-        height: 18px;
+      .table-icon {
+        font-size: 16px;
+        width: 16px;
+        height: 16px;
       }
     }
   }

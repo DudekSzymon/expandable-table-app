@@ -1,12 +1,4 @@
 <div class="expandable-content p-3">
-  <div class="tab-header">
-    <h3 class="tab-title">
-      <mat-icon class="tab-icon">{{ getActiveTabIcon() }}</mat-icon>
-      {{ getActiveTabLabel() }}
-    </h3>
-    <div class="tab-divider"></div>
-  </div>
-
   <mat-tab-group
     animationDuration="300ms"
     class="custom-tabs"
@@ -17,6 +9,13 @@
       [label]="getTabLabel(tabConfig)"
     >
       <div class="tab-content">
+        <div class="table-header">
+          <h4 class="table-title">
+            <mat-icon class="table-icon">{{ getTabIcon(tabConfig) }}</mat-icon>
+            {{ getTabLabel(tabConfig) }}
+          </h4>
+        </div>
+
         <div
           *ngIf="getTabData(tabConfig.key).length === 0"
           class="no-data-message"
